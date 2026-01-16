@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +8,7 @@ import { Separator } from '@/components/ui/separator';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('home');
+  const navigate = useNavigate();
 
   const balance = '1 234 567.89';
   const cardNumber = '•••• 4892';
@@ -31,10 +33,21 @@ const Index = () => {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-semibold">ВТБ</h1>
           <div className="flex gap-3">
-            <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-white/20">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-primary-foreground hover:bg-white/20 relative"
+              onClick={() => navigate('/notifications')}
+            >
               <Icon name="Bell" size={22} />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </Button>
-            <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-white/20">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-primary-foreground hover:bg-white/20"
+              onClick={() => navigate('/admin')}
+            >
               <Icon name="Settings" size={22} />
             </Button>
           </div>
